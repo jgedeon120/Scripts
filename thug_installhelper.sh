@@ -6,12 +6,12 @@ set -e
 
 VER=$DISTRIB_RELEASE
 
-if [ `whoami` !='root' ]; then
+if [ `whoami` != 'root' ]; then
 	echo 'This script must be run as root'
 	exit 0
 fi
 
-if [ $VER !='14.04' ]; then
+if [ $VER != "14.04" ]; then
 	echo 'This script is meant for Ubuntu 14.04'
 	exit 0
 fi
@@ -42,7 +42,7 @@ cd /usr/local/src/pylibemu/ && python setup.py build && python setup.py install
 
 # Install thug
 git clone https://github.com/buffer/thug.git /opt/thug
-sed -i 's/True/False/' /opt/thug/src/Logging/logging.conf
+sed -i '1,/True/s/True/False/' /opt/thug/src/Logging/logging.conf
 python /opt/thug/src/thug.py -h
 
 echo 'Thug has been set up'
